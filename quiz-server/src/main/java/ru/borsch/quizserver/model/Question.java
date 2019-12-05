@@ -2,6 +2,8 @@ package ru.borsch.quizserver.model;
 
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.util.List;
@@ -23,7 +25,8 @@ public class Question {
             inverseJoinColumns = @JoinColumn(name = "answerId", referencedColumnName = "id"))
     private Set<Answer> correctAnswers;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinTable(name = "Question_AnswerOptions",
             joinColumns = @JoinColumn(name = "questionId", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "answerId", referencedColumnName = "id"))

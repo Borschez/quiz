@@ -12,6 +12,8 @@ import { HttpClientModule} from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { FormsModule } from '@angular/forms';
+import { QuestionDetailComponent } from './question-detail/question-detail.component';
+import { AnswerDetailComponent } from './answer-detail/answer-detail.component';
 
 @Injectable()
 export class XhrInterceptor implements HttpInterceptor {
@@ -25,7 +27,7 @@ export class XhrInterceptor implements HttpInterceptor {
 }
 
 @NgModule({
-  declarations: [LayoutComponent, HeaderComponent, FooterComponent, UserProfileComponent, HomeComponent, LoginComponent],
+  declarations: [LayoutComponent, HeaderComponent, FooterComponent, UserProfileComponent, HomeComponent, LoginComponent, QuestionDetailComponent, AnswerDetailComponent],
   imports: [
     CommonModule,
     AppRoutingModule,

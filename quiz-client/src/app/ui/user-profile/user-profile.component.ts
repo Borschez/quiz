@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class UserProfileComponent implements OnInit {
   title = 'Demo';
-  userInfo = {};
+  userInfo: any;
 
   constructor(private http: HttpClient) {
     http.get('/api/user-info').subscribe(data => this.userInfo = data);

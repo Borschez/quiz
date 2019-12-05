@@ -19,6 +19,16 @@ public class AnswerServiceImpl implements AnswerService {
     private AnswerRepository answerRepository;
 
     @Override
+    public Answer saveAnswer(Answer answer) {
+        return answerRepository.save(answer);
+    }
+
+    @Override
+    public void deleteAnswer(Answer answer) {
+        answerRepository.delete(answer);
+    }
+
+    @Override
     public Answer findById(Long id) {
         return answerRepository.findById(id).orElse(null);
     }

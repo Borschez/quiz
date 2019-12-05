@@ -1,8 +1,24 @@
-<h1>Greeting</h1>
-<div [hidden]="!authenticated()">
-  <p>The ID is {{greeting.id}}</p>
-  <p>The content is {{greeting.content}}</p>
-</div>
-<div [hidden]="authenticated()">
-  <p>Login to see your greeting</p>
+<h2>{{title}}</h2>
+
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading"><span class="lead">Questions </span></div>
+  <div class="panel-body">
+    <div class="table-responsive">
+      <table class="table table-hover">
+        <thead>
+        <tr>
+          <th>ID</th>
+          <th>DESCRIPTION</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let question of questions">
+          <td>{{question.id}}</td>
+          <td><a routerLink="/question/{{question.id}}">{{question.description}}</a></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>

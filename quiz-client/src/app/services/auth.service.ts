@@ -9,6 +9,7 @@ export class AuthService {
   private restAPIUrl = "/api"
 
   authenticated = false;
+  currentUserName = null;
 
   constructor(private http: HttpClient, private router: Router) { }
 
@@ -18,22 +19,23 @@ export class AuthService {
       authorization : 'Basic ' + btoa(credentials.username + ':' + credentials.password)
     } : {});
 
-    console.log(headers);
-
     this.http.get(loginUrl, {headers: headers}).subscribe(response => {
       if (response['name']) {
         this.authenticated = true;
+        this.currentUserName = response['name'];
       } else {
         this.authenticated = false;
+        this.currentUserName = null;
       }
       return callback && callback();
     });
   }
 
-  /*logout() {
-    this.http.post('logout', {}).finally(() => {
+  logout() {
+    const logoutUrl = `${this.restAPIUrl}/logout`;
+    this.http.post(logoutUrl, {}).subscribe(() => {
       this.authenticated = false;
       this.router.navigateByUrl('/login');
-    }).subscribe();
-  }*/
+    });
+  }
 }

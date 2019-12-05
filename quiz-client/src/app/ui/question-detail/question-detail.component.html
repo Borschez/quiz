@@ -1,0 +1,37 @@
+<button (click)="goBack()" class="btn btn-default custom-width">go back</button>
+<div *ngIf="question; then thenBlock else elseBlock"> ...</div>
+<ng-template #thenBlock>
+  <h2>{{question.description}}</h2>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="questionDescription">Description:</label>
+        <textarea [(ngModel)]="question.description" placeholder="description" class="form-control"
+                  id="questionDescription" rows="4"></textarea>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="row">
+        <button *ngIf="question.description !=''" (click)="addAnswer()" class="btn btn-primary custom-width">Add
+          Answer
+        </button>
+      </div>
+      <div class="row">
+        <app-answer-detail *ngFor="let answer of question.answerOptions"
+                           [answer]="answer"
+                           [isCorrect]="isCorrectAnswer(answer)"
+                           (markCorrect)="markCorrect(answer)"
+                           (markIncorrect)="markIncorrect(answer)"
+                           (deleteAnswerFunc)="deleteAnswer(answer)">
+        </app-answer-detail>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <button *ngIf="question.description !=''" (click)="save()" class="btn btn-success custom-width">save</button>
+    </div>
+  </div>
+</ng-template>
+<ng-template #elseBlock>
+</ng-template>

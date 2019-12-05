@@ -2,7 +2,7 @@ package ru.borsch.quizserver.service;
 
 import ru.borsch.quizserver.model.User;
 
-import java.util.Set;
+import java.util.List;
 
 public interface UserService {
     User findById(Long id);
@@ -15,7 +15,7 @@ public interface UserService {
 
     void deleteUserById(Long id);
 
-    Set<User> findAllUsers();
+    List<User> findAllUsers();
 
     boolean isUserExist(User user);
 

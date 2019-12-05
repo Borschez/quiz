@@ -1,0 +1,23 @@
+<div *ngIf="answer; then thenBlock else elseBlock"> ...</div>
+<ng-template #thenBlock>
+  <div class="row">
+    <div class="col-md-11">
+      <div class="form-group">
+        <button *ngIf="answer.description !=''" (click)="deleteAnswerFunc.emit(answer)" title="Delete Answer" class="btn btn-danger custom-width float-right">
+          <i class="fa fa-trash"></i>
+        </button>
+        <button *ngIf="!isCorrect" (click)="markCorrect.emit(answer)" title="Mark as Correct" class="btn btn-light custom-width float-right">
+          <i class="fa fa-square-o"></i>
+        </button>
+        <button *ngIf="isCorrect" (click)="markIncorrect.emit(answer)" title="Mark as Incorrect" class="btn btn-success custom-width float-right">
+          <i class="fa fa-check-square"></i>
+        </button>
+        <label for="answerDescription">Description:</label>
+        <textarea [(ngModel)]="answer.description" placeholder="description" class="form-control" id="answerDescription"
+                  rows="3"></textarea>
+      </div>
+    </div>
+  </div>
+</ng-template>
+<ng-template #elseBlock>
+</ng-template>

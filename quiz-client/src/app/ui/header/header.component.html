@@ -1,19 +1,21 @@
 <nav class="navbar navbar-dark bg-dark mb-5">
-  <a class="navbar-brand" href="/">Quizer</a>
+  <a class="navbar-brand" href="/" i18n="@@introductionHeader">Quizer</a>
   <div class="navbar-expand mr-auto">
     <div class="navbar-nav">
-      <a class="nav-item nav-link active" routerLinkActive="active" routerLink="/home">Home</a>
-      <a class="nav-item nav-link" href="#">About</a>
-      <a class="nav-item nav-link" href="#">Contact</a>
+      <a class="nav-item nav-link active" routerLinkActive="active" routerLink="/home" i18n="@@homeLink">Home</a>
+      <a class="nav-item nav-link" routerLinkActive="active" routerLink="/add-question" i18n="@@addQuestionLink">Add Question</a>
     </div>
   </div>
   <div class="navbar-expand ml-auto navbar-nav">
     <div class="navbar-nav">
-      <a class="nav-item nav-link" routerLink="/userProfile" href="#">
+      <a class="nav-item nav-link" routerLink="/userProfile" [hidden]="!authenticated()">
         <i class="fa fa-user-circle"></i>
       </a>
-      <a class="nav-item nav-link" routerLinkActive="active" routerLink="/login">
+      <a class="nav-item nav-link" routerLinkActive="active" routerLink="/login" [hidden]="authenticated()">
         <i class="fa fa-sign-in"></i>
+      </a>
+      <a class="nav-item nav-link" (click)="logout()" [hidden]="!authenticated()">
+        <i class="fa fa-sign-out"></i>
       </a>
       <a class="nav-item nav-link" href="https://vk.com/borsch_aleksey" target="_blank">
         <i class="fa fa-dollar"></i>

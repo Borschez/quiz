@@ -1,12 +1,18 @@
 package ru.borsch.quizserver.service;
 
+import ru.borsch.quizserver.model.Answer;
 import ru.borsch.quizserver.model.Question;
 
+import java.util.List;
 import java.util.Set;
 
 public interface QuestionService {
-    Question findById(Long id);
+    Question saveQuestion(Question question);
 
-    Set<Question> findBySubjectId(Long subjectId);
+    Question findById(Long id);
+    List<Question> findAll();
+    Question findByAnswer(Answer answer);
+
+    List<Question> findBySubjectId(Long subjectId);
 
 }

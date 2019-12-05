@@ -13,6 +13,7 @@ import ru.borsch.quizserver.model.User;
 import ru.borsch.quizserver.repositories.UserRepository;
 import ru.borsch.quizserver.service.UserService;
 
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -49,8 +50,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Set<User> findAllUsers() {
-        return userRepository.findAll().stream().collect(Collectors.toSet());
+    public List<User> findAllUsers() {
+        return userRepository.findAll();
     }
 
     @Override

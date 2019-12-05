@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {AuthService} from "../../services/auth.service";
 
+import {Question} from "../../model/question";
+import {QuestionService} from "../../services/question.service";
 
 @Component({
   selector: 'app-home',
@@ -9,17 +11,15 @@ import {AuthService} from "../../services/auth.service";
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  title = 'Home';
+  questions: Question[];
 
-  title = 'Demo';
-  greeting = {};
-
-  constructor(private http: HttpClient, private auth:AuthService) {
-    http.get('/api/resource').subscribe(data => this.greeting = data);
+  constructor(private http: HttpClient,
+              private auth:AuthService,
+              private questionService: QuestionService) {
   }
 
   ngOnInit() {
+    this.questionService.getQuestions().subscribe(questions => this.questions = questions);
   }
-
-  authenticated() { return this.auth.authenticated; }
-
 }
